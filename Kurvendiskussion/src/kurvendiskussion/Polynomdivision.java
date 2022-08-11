@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  *
  * @author frank
- * Erlaubnis wurde über GitHub erteilt.
+ * Erlaubnis wurde Ã¼ber GitHub erteilt.
  */
 
 
@@ -15,10 +15,10 @@ public class Polynomdivision {
 	
 	  
 	  private static final int grad = 3;	//float zu double
-	  private static float[] divident = new float[grad + 1];
-	  private static float[] divisor = new float[grad + 1];
-	  private static float[] quotient = new float[grad + 1];
-	  private static float[] rest = new float[grad + 1];
+	  private static double[] divident = new double[grad + 1];
+	  private static double[] divisor = new double[grad + 1];
+	  private static double[] quotient = new double[grad + 1];
+	  private static double[] rest = new double[grad + 1];
 
 	  /**
 	   * @param args the command line arguments
@@ -31,26 +31,26 @@ public class Polynomdivision {
 	    ausgabe(rest);
 	  }
 	  
-	  public static void eingabe(float[] polynom) {
+	  public static void eingabe(double[] polynom) {
 	    System.out.println("Polynom eingeben bis zum Grad:"+grad);
 	    for (int i = 0; i <= grad; i++) {
-	      System.out.println("Koeffizient für "+i+"-te Potenz:");
+	      System.out.println("Koeffizient fÃ¼r "+i+"-te Potenz:");
 	      Scanner sc = new Scanner(System.in);
-	      polynom[i] = sc.nextFloat();
+	      polynom[i] = sc.nextDouble();
 	    }
 	    System.out.println("\n\n");
 	  }
 	  
-	  public static void ausgabe(float[] polynom) {
+	  public static void ausgabe(double[] polynom) {
 	    for (int i = grad; i >= 0; i--) {
 	      if (polynom[i] != 0) System.out.format("%+5.3f x^%d ",polynom[i],i);
 	    }
 	    System.out.println("\n");
 	  }
 	  
-	  public static void division(float[] a, float[] b) {
-	    // Koeffizienten und Grad für divisor ermitteln
-	    float koeff = 1;
+	  public static void division(double[] a, double[] b) {
+	    // Koeffizienten und Grad fÃ¼r divisor ermitteln
+	    double koeff = 1;
 	    int gradDivisor = 0;
 	    int i = grad;
 	    while (i>=0) {
@@ -62,12 +62,12 @@ public class Polynomdivision {
 	      i--;
 	    }
 	    /*
-	     * für alle Koeffizienten
+	     * fÃ¼r alle Koeffizienten
 	     *  1. Faktor ermitteln
 	     *  2. ausmultiplizieren
 	     *  3. subtrahieren
 	     */
-	    float faktor;
+	    double faktor;
 	    rest = Arrays.copyOf(a, a.length);
 	    
 	    for (int j = grad; j >= gradDivisor; j--) {
@@ -76,7 +76,7 @@ public class Polynomdivision {
 	      
 	      if (faktor != 0.0) {
 	        // ausmultiplizieren
-	        float[] zwischenErgebnis = new float[grad + 1];
+	        double[] zwischenErgebnis = new double[grad + 1];
 	        for (int k = 0; k <= gradDivisor; k++) {
 	          zwischenErgebnis[k+ j - gradDivisor] = faktor * b[k];          
 	        }
